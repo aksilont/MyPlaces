@@ -29,10 +29,20 @@ class MainViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
         var content = cell.defaultContentConfiguration()
+
+        content.image = UIImage(named: restaurantNames[indexPath.row])
         content.text = restaurantNames[indexPath.row]
+        
+        content.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0)
+        
         cell.contentConfiguration = content
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
     }
 
 }
