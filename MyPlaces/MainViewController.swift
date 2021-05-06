@@ -33,6 +33,8 @@ class MainViewController: UITableViewController {
         var content = cell.defaultContentConfiguration()
 
         content.image = UIImage(named: restaurantNames[indexPath.row])
+        content.imageProperties.cornerRadius = cell.frame.size.height / 2
+        
         content.text = restaurantNames[indexPath.row]
         
         content.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0)
@@ -41,8 +43,10 @@ class MainViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+        return 85
     }
 
 }

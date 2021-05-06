@@ -15,6 +15,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z1P-8d-jLo">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="25"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="25"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -25,7 +31,7 @@
             </objects>
             <point key="canvasLocation" x="102.89855072463769" y="77.678571428571431"/>
         </scene>
-        <!--Main View Controller-->
+        <!--My Places-->
         <scene sceneID="6sf-MS-yHu">
             <objects>
                 <tableViewController id="zLg-ei-AfX" customClass="MainViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
@@ -48,7 +54,7 @@
                             <outlet property="delegate" destination="zLg-ei-AfX" id="nwh-Dz-VTG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Main View Controller" id="TY7-VG-xRP"/>
+                    <navigationItem key="navigationItem" title="My Places" id="TY7-VG-xRP"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rmQ-g1-z4o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
