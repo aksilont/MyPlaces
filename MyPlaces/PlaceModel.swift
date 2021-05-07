@@ -5,13 +5,14 @@
 //  Created by Aksilont on 06.05.2021.
 //
 
-import Foundation
+import UIKit
 
 struct Place {
     let name: String
-    let location: String
-    let type: String
-    let image: String
+    let location: String?
+    let type: String?
+    let image: UIImage?
+    let restaurantImage: String?
     
     static let restaurantNames = [
         "Burger Heroes", "Kitchen", "Bonsai", "Дастархан",
@@ -21,6 +22,9 @@ struct Place {
     ]
     
     static func getPlaces() -> [Place] {
-        return restaurantNames.map { Place(name: $0, location: "Москва", type: "Ресторан", image: $0) }
+        return restaurantNames.map {
+            Place(name: $0, location: "Москва", type: "Ресторан", image: nil, restaurantImage: $0)
+            
+        }
     }
 }
