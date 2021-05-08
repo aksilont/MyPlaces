@@ -55,22 +55,22 @@
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="o8B-LN-MSF">
-                                            <rect key="frame" x="96" y="8" width="302" height="69"/>
+                                            <rect key="frame" x="96" y="11.5" width="302" height="62"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2w-YL-Sjb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="302" height="24.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="302" height="22"/>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FP4-39-ihJ">
-                                                    <rect key="frame" x="0.0" y="27.5" width="302" height="20"/>
+                                                    <rect key="frame" x="0.0" y="25" width="302" height="18"/>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivq-4I-9d2">
-                                                    <rect key="frame" x="0.0" y="50.5" width="302" height="18.5"/>
+                                                    <rect key="frame" x="0.0" y="46" width="302" height="16"/>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -79,10 +79,9 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="o8B-LN-MSF" firstAttribute="top" secondItem="Fja-3j-rIr" secondAttribute="top" constant="8" id="B28-75-dFA"/>
-                                        <constraint firstAttribute="bottom" secondItem="o8B-LN-MSF" secondAttribute="bottom" constant="8" id="QqC-sc-Kdf"/>
                                         <constraint firstAttribute="trailing" secondItem="o8B-LN-MSF" secondAttribute="trailing" constant="16" id="RbO-gq-FRr"/>
                                         <constraint firstItem="Neg-J5-q9M" firstAttribute="leading" secondItem="Fja-3j-rIr" secondAttribute="leading" constant="15" id="fVR-Yp-IuA"/>
+                                        <constraint firstItem="o8B-LN-MSF" firstAttribute="centerY" secondItem="Fja-3j-rIr" secondAttribute="centerY" id="gWt-3z-ywi"/>
                                         <constraint firstItem="Neg-J5-q9M" firstAttribute="centerY" secondItem="Fja-3j-rIr" secondAttribute="centerY" id="pYl-fI-Epq"/>
                                         <constraint firstItem="o8B-LN-MSF" firstAttribute="leading" secondItem="Neg-J5-q9M" secondAttribute="trailing" constant="16" id="xff-fj-aa5"/>
                                     </constraints>
