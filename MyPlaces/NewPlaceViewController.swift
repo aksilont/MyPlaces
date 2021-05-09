@@ -18,6 +18,7 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet weak var placeType: UITextField!
     
     var imageIsChanged: Bool = false
+    var currentPlace: Place?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,8 @@ class NewPlaceViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        
+        setupEditScreen()
     }
 
     // MARK: - UITableViewDelegate
@@ -62,7 +65,7 @@ class NewPlaceViewController: UITableViewController {
         }
     }
     
-    func saveNewPlace() {
+    func savePlace() {
         var image: UIImage?
         if imageIsChanged {
             image = placeImage.image
@@ -75,7 +78,46 @@ class NewPlaceViewController: UITableViewController {
                              location: placeLocation.text,
                              type: placeType.text,
                              imageData: imageData)
-        StorageManager.saveObject(newPlace)
+        
+        if currentPlace != nil {
+            do {
+                try realm.write {
+                    currentPlace?.name = newPlace.name
+                    currentPlace?.location = newPlace.location
+                    currentPlace?.type = newPlace.type
+                    currentPlace?.imageData = newPlace.imageData
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            StorageManager.saveObject(newPlace)
+        }
+    }
+    
+    private func setupEditScreen() {
+        guard let currentPlace = currentPlace else { return }
+        guard let data = currentPlace.imageData, let image = UIImage(data: data) else { return }
+        
+        placeName.text = currentPlace.name
+        placeLocation.text = currentPlace.location
+        placeType.text = currentPlace.type
+        placeImage.image = image
+        placeImage.contentMode = .scaleAspectFill
+        placeImage.clipsToBounds = true
+        
+        imageIsChanged = true
+        
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        navigationItem.leftBarButtonItem = nil
+        title = placeName.text
+        saveButton.isEnabled = true
     }
     
     @IBAction func cancelAction(_ sender: Any) {

@@ -12,8 +12,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZrW-8F-2MT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z1P-8d-jLo">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="z1P-8d-jLo">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="25"/>
@@ -91,6 +91,7 @@
                                     <outlet property="locationLabel" destination="FP4-39-ihJ" id="ybe-7H-1d9"/>
                                     <outlet property="nameLabel" destination="F2w-YL-Sjb" id="x55-Pr-9cg"/>
                                     <outlet property="typeLabel" destination="Ivq-4I-9d2" id="HT3-jq-BQK"/>
+                                    <segue destination="Krx-Bt-G0P" kind="show" identifier="ShowDetail" id="QLc-fg-zN0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -279,7 +280,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mPN-JG-Ofm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="9PR-Mt-cW2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2705.7971014492755" y="77.678571428571431"/>
+            <point key="canvasLocation" x="1651" y="78"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bR5-n9-3Tw">
@@ -297,9 +298,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fhn-9F-hfY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1795.6521739130437" y="77.678571428571431"/>
+            <point key="canvasLocation" x="1651" y="-609"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="QLc-fg-zN0"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Photo" width="195" height="196"/>
         <systemColor name="systemBackgroundColor">
