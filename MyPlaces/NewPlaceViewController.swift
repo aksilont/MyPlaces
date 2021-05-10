@@ -16,6 +16,7 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet weak var placeName: UITextField!
     @IBOutlet weak var placeLocation: UITextField!
     @IBOutlet weak var placeType: UITextField!
+    @IBOutlet weak var ratingControl: RatingControl!
     
     var imageIsChanged: Bool = false
     var currentPlace: Place?
@@ -80,7 +81,8 @@ class NewPlaceViewController: UITableViewController {
         let newPlace = Place(name: placeName.text!,
                              location: placeLocation.text,
                              type: placeType.text,
-                             imageData: imageData)
+                             imageData: imageData,
+                             rating: Double(ratingControl.rating))
         
         if currentPlace != nil {
             do {
@@ -89,6 +91,7 @@ class NewPlaceViewController: UITableViewController {
                     currentPlace?.location = newPlace.location
                     currentPlace?.type = newPlace.type
                     currentPlace?.imageData = newPlace.imageData
+                    currentPlace?.rating = newPlace.rating
                 }
             } catch {
                 print(error.localizedDescription)
@@ -108,6 +111,7 @@ class NewPlaceViewController: UITableViewController {
         placeImage.image = image
         placeImage.contentMode = .scaleAspectFill
         placeImage.clipsToBounds = true
+        ratingControl.rating = Int(currentPlace.rating)
         
         imageIsChanged = true
         

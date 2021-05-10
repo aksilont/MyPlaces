@@ -176,7 +176,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="356" placeholderIntrinsicHeight="44" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="A1f-cy-gKA" customClass="RatingConrol" customModule="MyPlaces" customModuleProvider="target">
+                                                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="252" placeholderIntrinsicHeight="44" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="A1f-cy-gKA" customClass="RatingControl" customModule="MyPlaces" customModuleProvider="target">
                                                     <rect key="frame" x="81" y="48" width="252" height="44"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="starCount">
@@ -219,6 +219,7 @@
                         <outlet property="placeLocation" destination="FAd-vR-5A6" id="gZM-5v-iSS"/>
                         <outlet property="placeName" destination="OZY-7u-vQR" id="fMl-0X-Iv1"/>
                         <outlet property="placeType" destination="zlx-Ic-X6g" id="G3J-M5-beW"/>
+                        <outlet property="ratingControl" destination="A1f-cy-gKA" id="7G7-Tl-QYg"/>
                         <outlet property="saveButton" destination="Ujd-ma-glW" id="gHt-2F-6m3"/>
                     </connections>
                 </tableViewController>
@@ -361,7 +362,7 @@
     </scenes>
     <designables>
         <designable name="A1f-cy-gKA">
-            <size key="intrinsicContentSize" width="356" height="44"/>
+            <size key="intrinsicContentSize" width="252" height="44"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>

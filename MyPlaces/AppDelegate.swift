@@ -14,15 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let schemaVersion: UInt64 = 2
+        
         let config = Realm.Configuration(
-            schemaVersion: 1,
+            schemaVersion: schemaVersion,
             migrationBlock: { migration, oldSchemaVersion in
-                // We haven’t migrated anything yet, so oldSchemaVersion == 0
-                if oldSchemaVersion < 1 {
-                    migration.enumerateObjects(ofType: Place.className()) { _, newObject in
-                        newObject!["date"] = Date(timeIntervalSinceNow: -(Double(Int.random(in: 1...100000))))
-                    }
-                }
+                if oldSchemaVersion < schemaVersion { }
             })
         // Tell Realm to use this new configuration object for the default Realm
         Realm.Configuration.defaultConfiguration = config

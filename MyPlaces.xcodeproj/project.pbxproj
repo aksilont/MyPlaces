@@ -12,7 +12,7 @@
 		7A37AF002644657A003EE066 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37AEFF2644657A003EE066 /* NewPlaceViewController.swift */; };
 		7A37AF032645F10C003EE066 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7A37AF022645F10C003EE066 /* RealmSwift */; };
 		7ABAF5802646847900F28EC0 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABAF57F2646847900F28EC0 /* StorageManager.swift */; };
-		7ABAF5822649317200F28EC0 /* RatingConrol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABAF5812649317200F28EC0 /* RatingConrol.swift */; };
+		7ABAF5822649317200F28EC0 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABAF5812649317200F28EC0 /* RatingControl.swift */; };
 		7ADA33F92642E3EE000EC8CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADA33F82642E3EE000EC8CF /* AppDelegate.swift */; };
 		7ADA33FB2642E3EE000EC8CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADA33FA2642E3EE000EC8CF /* SceneDelegate.swift */; };
 		7ADA33FD2642E3EE000EC8CF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADA33FC2642E3EE000EC8CF /* MainViewController.swift */; };
@@ -26,7 +26,7 @@
 		7A37AEFD26444C5E003EE066 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 		7A37AEFF2644657A003EE066 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		7ABAF57F2646847900F28EC0 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
-		7ABAF5812649317200F28EC0 /* RatingConrol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingConrol.swift; sourceTree = "<group>"; };
+		7ABAF5812649317200F28EC0 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		7ADA33F52642E3EE000EC8CF /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ADA33F82642E3EE000EC8CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7ADA33FA2642E3EE000EC8CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 				7A37AEFF2644657A003EE066 /* NewPlaceViewController.swift */,
 				7A37AEFD26444C5E003EE066 /* PlaceModel.swift */,
 				7A37AEFB26441FBD003EE066 /* CustomTableViewCell.swift */,
-				7ABAF5812649317200F28EC0 /* RatingConrol.swift */,
+				7ABAF5812649317200F28EC0 /* RatingControl.swift */,
 				7ADA33FE2642E3EE000EC8CF /* Main.storyboard */,
 				7ADA34012642E3EF000EC8CF /* Assets.xcassets */,
 				7ADA34032642E3EF000EC8CF /* LaunchScreen.storyboard */,
@@ -189,7 +189,7 @@
 				7A37AEFE26444C5E003EE066 /* PlaceModel.swift in Sources */,
 				7A37AEFC26441FBD003EE066 /* CustomTableViewCell.swift in Sources */,
 				7ADA33FB2642E3EE000EC8CF /* SceneDelegate.swift in Sources */,
-				7ABAF5822649317200F28EC0 /* RatingConrol.swift in Sources */,
+				7ABAF5822649317200F28EC0 /* RatingControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
