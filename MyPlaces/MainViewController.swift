@@ -141,6 +141,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Table view Delegate
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt
                     indexPath: IndexPath) -> UISwipeActionsConfiguration? {
