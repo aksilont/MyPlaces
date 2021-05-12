@@ -255,38 +255,56 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ytd-3K-cgS">
-                                                    <rect key="frame" x="96" y="11.5" width="302" height="62"/>
+                                                    <rect key="frame" x="96" y="11.5" width="210" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DsE-dN-gVC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="302" height="22"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="210" height="22"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o58-PI-u0p">
-                                                            <rect key="frame" x="0.0" y="25" width="302" height="18"/>
+                                                            <rect key="frame" x="0.0" y="25" width="210" height="18"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhp-tS-WKe">
-                                                            <rect key="frame" x="0.0" y="46" width="302" height="16"/>
+                                                            <rect key="frame" x="0.0" y="46" width="210" height="16"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNG-wd-3pb" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="314" y="35" width="90" height="15"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="AAp-UF-oNJ"/>
+                                                        <constraint firstAttribute="height" constant="15" id="LVH-py-Wab"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                            <real key="value" value="14"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="filledStar"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="emptyStar"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="ytd-3K-cgS" secondAttribute="trailing" constant="16" id="0MM-Vr-n46"/>
+                                                <constraint firstItem="hNG-wd-3pb" firstAttribute="leading" secondItem="ytd-3K-cgS" secondAttribute="trailing" constant="8" id="017-UW-Nt9"/>
                                                 <constraint firstItem="ytd-3K-cgS" firstAttribute="centerY" secondItem="XXG-Ld-EQw" secondAttribute="centerY" id="CQU-Ru-bT8"/>
+                                                <constraint firstAttribute="trailing" secondItem="hNG-wd-3pb" secondAttribute="trailing" constant="10" id="JSs-Pu-XQH"/>
                                                 <constraint firstItem="vtf-hp-Fmv" firstAttribute="leading" secondItem="XXG-Ld-EQw" secondAttribute="leading" constant="15" id="Y4O-4d-pbk"/>
+                                                <constraint firstItem="hNG-wd-3pb" firstAttribute="centerY" secondItem="XXG-Ld-EQw" secondAttribute="centerY" id="fLo-aF-ggo"/>
                                                 <constraint firstItem="vtf-hp-Fmv" firstAttribute="centerY" secondItem="XXG-Ld-EQw" secondAttribute="centerY" id="sDf-YK-mEX"/>
                                                 <constraint firstItem="ytd-3K-cgS" firstAttribute="leading" secondItem="vtf-hp-Fmv" secondAttribute="trailing" constant="16" id="tT1-1B-GZt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="cosmosView" destination="hNG-wd-3pb" id="lqF-bn-SeG"/>
                                             <outlet property="imageOfPlace" destination="vtf-hp-Fmv" id="wjs-Cj-0fh"/>
                                             <outlet property="locationLabel" destination="o58-PI-u0p" id="Eh4-Rs-PHs"/>
                                             <outlet property="nameLabel" destination="DsE-dN-gVC" id="4Y9-a7-BFd"/>
@@ -364,6 +382,9 @@
         <designable name="A1f-cy-gKA">
             <size key="intrinsicContentSize" width="252" height="44"/>
         </designable>
+        <designable name="hNG-wd-3pb">
+            <size key="intrinsicContentSize" width="90" height="14"/>
+        </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="mIX-dV-i2e"/>
@@ -371,6 +392,8 @@
     <resources>
         <image name="Photo" width="195" height="196"/>
         <image name="arrowtriangle.up" catalog="system" width="128" height="124"/>
+        <image name="emptyStar" width="255" height="256"/>
+        <image name="filledStar" width="237.5" height="238"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
