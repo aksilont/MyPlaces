@@ -19,6 +19,7 @@
 		7ADA34002642E3EE000EC8CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ADA33FE2642E3EE000EC8CF /* Main.storyboard */; };
 		7ADA34022642E3EF000EC8CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ADA34012642E3EF000EC8CF /* Assets.xcassets */; };
 		7ADA34052642E3EF000EC8CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ADA34032642E3EF000EC8CF /* LaunchScreen.storyboard */; };
+		7AF3167A264B03C100AAD571 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF31679264B03C100AAD571 /* RatingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		7ADA34012642E3EF000EC8CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7ADA34042642E3EF000EC8CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7ADA34062642E3EF000EC8CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AF31679264B03C100AAD571 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				7A37AEFF2644657A003EE066 /* NewPlaceViewController.swift */,
 				7A37AEFD26444C5E003EE066 /* PlaceModel.swift */,
 				7A37AEFB26441FBD003EE066 /* CustomTableViewCell.swift */,
+				7AF31679264B03C100AAD571 /* RatingView.swift */,
 				7ABAF5812649317200F28EC0 /* RatingControl.swift */,
 				7ADA33FE2642E3EE000EC8CF /* Main.storyboard */,
 				7ADA34012642E3EF000EC8CF /* Assets.xcassets */,
@@ -185,6 +188,7 @@
 				7ADA33FD2642E3EE000EC8CF /* MainViewController.swift in Sources */,
 				7A37AF002644657A003EE066 /* NewPlaceViewController.swift in Sources */,
 				7ADA33F92642E3EE000EC8CF /* AppDelegate.swift in Sources */,
+				7AF3167A264B03C100AAD571 /* RatingView.swift in Sources */,
 				7ABAF5802646847900F28EC0 /* StorageManager.swift in Sources */,
 				7A37AEFE26444C5E003EE066 /* PlaceModel.swift in Sources */,
 				7A37AEFC26441FBD003EE066 /* CustomTableViewCell.swift in Sources */,

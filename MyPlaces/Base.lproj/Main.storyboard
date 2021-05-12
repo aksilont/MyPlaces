@@ -255,34 +255,44 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ytd-3K-cgS">
-                                                    <rect key="frame" x="96" y="11.5" width="302" height="62"/>
+                                                    <rect key="frame" x="96" y="11.5" width="225" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DsE-dN-gVC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="302" height="22"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="225" height="22"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o58-PI-u0p">
-                                                            <rect key="frame" x="0.0" y="25" width="302" height="18"/>
+                                                            <rect key="frame" x="0.0" y="25" width="225" height="18"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhp-tS-WKe">
-                                                            <rect key="frame" x="0.0" y="46" width="302" height="16"/>
+                                                            <rect key="frame" x="0.0" y="46" width="225" height="16"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehI-fX-n22" customClass="RatingView" customModule="MyPlaces" customModuleProvider="target">
+                                                    <rect key="frame" x="331" y="35" width="75" height="15"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="bOC-uc-JLh"/>
+                                                        <constraint firstAttribute="height" constant="15" id="gdA-G5-5dC"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="ytd-3K-cgS" secondAttribute="trailing" constant="16" id="0MM-Vr-n46"/>
                                                 <constraint firstItem="ytd-3K-cgS" firstAttribute="centerY" secondItem="XXG-Ld-EQw" secondAttribute="centerY" id="CQU-Ru-bT8"/>
+                                                <constraint firstAttribute="trailing" secondItem="ehI-fX-n22" secondAttribute="trailing" constant="8" id="VgB-cj-oiG"/>
                                                 <constraint firstItem="vtf-hp-Fmv" firstAttribute="leading" secondItem="XXG-Ld-EQw" secondAttribute="leading" constant="15" id="Y4O-4d-pbk"/>
+                                                <constraint firstItem="ehI-fX-n22" firstAttribute="centerY" secondItem="XXG-Ld-EQw" secondAttribute="centerY" id="s9u-YH-vH8"/>
                                                 <constraint firstItem="vtf-hp-Fmv" firstAttribute="centerY" secondItem="XXG-Ld-EQw" secondAttribute="centerY" id="sDf-YK-mEX"/>
+                                                <constraint firstItem="ehI-fX-n22" firstAttribute="leading" secondItem="ytd-3K-cgS" secondAttribute="trailing" constant="10" id="sev-Rc-IbY"/>
                                                 <constraint firstItem="ytd-3K-cgS" firstAttribute="leading" secondItem="vtf-hp-Fmv" secondAttribute="trailing" constant="16" id="tT1-1B-GZt"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -290,6 +300,7 @@
                                             <outlet property="imageOfPlace" destination="vtf-hp-Fmv" id="wjs-Cj-0fh"/>
                                             <outlet property="locationLabel" destination="o58-PI-u0p" id="Eh4-Rs-PHs"/>
                                             <outlet property="nameLabel" destination="DsE-dN-gVC" id="4Y9-a7-BFd"/>
+                                            <outlet property="ratingView" destination="ehI-fX-n22" id="J1M-7m-Yiy"/>
                                             <outlet property="typeLabel" destination="fhp-tS-WKe" id="N6n-8a-IHd"/>
                                             <segue destination="Krx-Bt-G0P" kind="show" identifier="ShowDetail" id="mIX-dV-i2e"/>
                                         </connections>
