@@ -56,6 +56,7 @@ import UIKit
         backgroundColor = .clear
         
         stars.forEach { starView in
+            starView.removeFromSuperview()
             mainStack.removeArrangedSubview(starView)
         }
         stars.removeAll()
