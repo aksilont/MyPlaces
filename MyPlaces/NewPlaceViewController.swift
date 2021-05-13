@@ -34,6 +34,14 @@ class NewPlaceViewController: UITableViewController {
         setupEditScreen()
     }
 
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "ShowMap",
+              let mapVC = segue.destination as? MapViewController
+        else { return }
+        mapVC.place = currentPlace
+    }
+    
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
