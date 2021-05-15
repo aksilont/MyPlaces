@@ -7,25 +7,38 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class MapViewController: UIViewController {
     
     var place = Place()
     let annotationIdentifier = "AnnotationIdentifier"
+    let locationManager = CLLocationManager()
+    let regionInMeters = 10_000.0
+    var incomeSegueIdentifier = ""
     
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
             mapView.delegate = self
         }
     }
+    @IBOutlet weak var mapPinImage: UIImageView!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPlacemark()
+        setupMapView()
+        checkLocationServices()
     }
     
-    @IBAction func cancelTapped(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+    private func setupMapView() {
+        if incomeSegueIdentifier == "ShowPlace" {
+            setupPlacemark()
+            mapPinImage.isHidden = true
+            addressLabel.isHidden = true
+            doneButton.isHidden = true
+        }
     }
     
     private func setupPlacemark() {
@@ -55,6 +68,53 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.showAlert("Службы геолокации",
+                               with: """
+                                     Службы геолокации выключены на устройстве.
+                                     Для включения: Настройки → Конфиденциальность → Службы геолокации → Включить
+                                     """)
+            }
+        }
+    }
+    
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    private func showAlert(_ title: String, with message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let actionOk = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(actionOk)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func showUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location,
+                                            latitudinalMeters: regionInMeters,
+                                            longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    @IBAction func cancelTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func myLocationTapped(_ sender: UIButton) {
+        showUserLocation()
+    }
+    
+    @IBAction func doneButtonTapped(_ sender: UIButton) {
+        
+    }
+    
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -79,6 +139,28 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         return annotationView
+    }
+    
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus as CLAuthorizationStatus {
+        case .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            if incomeSegueIdentifier == "GetAddress" { showUserLocation() }
+        case .denied:
+            showAlert("Службы геолокации", with: "Нет доступа к местоположению")
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        case .restricted:
+            showAlert("Службы геолокации", with: "Приложение не авторизовано для использования служб геолокации")
+        case .authorizedAlways:
+            break
+        @unknown default:
+            break
+        }
     }
     
 }
