@@ -20,8 +20,13 @@ class MapViewController: UIViewController {
     var placeCoordinate: CLLocationCoordinate2D?
     let annotationIdentifier = "AnnotationIdentifier"
     let locationManager = CLLocationManager()
-    let regionInMeters = 10_000.0
+    let regionInMeters = 1000.0
     var incomeSegueIdentifier = ""
+    var previousLocation: CLLocation? {
+        didSet {
+            startTrackingUserLocation()
+        }
+    }
     
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
@@ -55,6 +60,11 @@ class MapViewController: UIViewController {
             doneButton.isHidden = true
             goButton.isHidden = false
         }
+    }
+    
+    private func resetMapView(with directions: MKDirections) {
+        mapView.removeOverlays(mapView.overlays)
+        directions.cancel()
     }
     
     private func setupPlacemark() {
@@ -119,6 +129,17 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func startTrackingUserLocation() {
+        guard let previousLocation = previousLocation else { return }
+        let center = getCenterLocation(for: mapView)
+        guard center.distance(from: previousLocation) > 50 else { return }
+        self.previousLocation = center
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.showUserLocation()
+        }
+    }
+    
     private func getCenterLocation(for mapView: MKMapView) -> CLLocation {
         let latitude = mapView.centerCoordinate.latitude
         let longitude = mapView.centerCoordinate.longitude
@@ -131,13 +152,18 @@ class MapViewController: UIViewController {
             return
         }
         
-        guard let request = createDirectionRequest(from: location) else {
+        locationManager.startUpdatingLocation()
+        previousLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        
+        guard let request = createDirectionsRequest(from: location) else {
             showAlert("Ошибка", with: "Не удалось получить координаты места назначения")
             return
         }
         
-        let direction = MKDirections.init(request: request)
-        direction.calculate { response, error in
+        let directions = MKDirections.init(request: request)
+        resetMapView(with: directions)
+        
+        directions.calculate { response, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -162,7 +188,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func createDirectionRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
+    private func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
         guard let destinationCoordinate = placeCoordinate else { return nil }
         let destination = MKPlacemark(coordinate: destinationCoordinate)
         let source = MKPlacemark(coordinate: coordinate)
@@ -220,30 +246,40 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let centerLocation = getCenterLocation(for: mapView)
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(centerLocation) { placemarks, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+        
+        if incomeSegueIdentifier == "ShowPlace" && previousLocation != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.showUserLocation()
             }
-            
-            guard let placemarks = placemarks else { return }
-            let placemark = placemarks.first
-            
-            let streetName = placemark?.thoroughfare
-            let buildNumber = placemark?.subThoroughfare
-            
-            DispatchQueue.main.async {
-                if streetName != nil && buildNumber != nil {
-                    self.addressLabel.text = "\(streetName!), \(buildNumber!)"
-                } else if streetName != nil {
-                    self.addressLabel.text = "\(streetName!)"
-                } else {
-                    self.addressLabel.text = ""
+        }
+        
+        if incomeSegueIdentifier == "GetAddress" {
+            let centerLocation = getCenterLocation(for: mapView)
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(centerLocation) { placemarks, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                guard let placemarks = placemarks else { return }
+                let placemark = placemarks.first
+                
+                let streetName = placemark?.thoroughfare
+                let buildNumber = placemark?.subThoroughfare
+                
+                DispatchQueue.main.async {
+                    if streetName != nil && buildNumber != nil {
+                        self.addressLabel.text = "\(streetName!), \(buildNumber!)"
+                    } else if streetName != nil {
+                        self.addressLabel.text = "\(streetName!)"
+                    } else {
+                        self.addressLabel.text = ""
+                    }
                 }
             }
         }
+        
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
