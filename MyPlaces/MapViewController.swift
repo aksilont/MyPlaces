@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     
     weak var mapViewControllerDelegate: MapViewControllerDelegate?
     var place = Place()
+    var placeCoordinate: CLLocationCoordinate2D?
     let annotationIdentifier = "AnnotationIdentifier"
     let locationManager = CLLocationManager()
     let regionInMeters = 10_000.0
@@ -34,6 +35,11 @@ class MapViewController: UIViewController {
         }
     }
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var goButton: UIButton! {
+        didSet {
+            goButton.isHidden = true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +53,7 @@ class MapViewController: UIViewController {
             mapPinImage.isHidden = true
             addressLabel.isHidden = true
             doneButton.isHidden = true
+            goButton.isHidden = false
         }
     }
     
@@ -60,17 +67,17 @@ class MapViewController: UIViewController {
                 return
             }
             
-            guard let placemarks = placemarks else { return }
-            
-            let placemark = placemarks.first
+            guard let placemarks = placemarks,
+                  let placemark = placemarks.first,
+                  let placemarkLocation = placemark.location
+            else { return }
             
             let annotation = MKPointAnnotation()
             annotation.title = self.place.name
             annotation.subtitle = self.place.type
-            
-            guard let placemarkLocation = placemark?.location else { return }
-            
             annotation.coordinate = placemarkLocation.coordinate
+            
+            self.placeCoordinate = placemarkLocation.coordinate
             
             self.mapView.showAnnotations([annotation], animated: true)
             self.mapView.selectAnnotation(annotation, animated: true)
@@ -118,6 +125,57 @@ class MapViewController: UIViewController {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
+    private func getDirections() {
+        guard let location = locationManager.location?.coordinate else {
+            showAlert("Ошибка", with: "Не удалось определить текущее местопложение")
+            return
+        }
+        
+        guard let request = createDirectionRequest(from: location) else {
+            showAlert("Ошибка", with: "Не удалось получить координаты места назначения")
+            return
+        }
+        
+        let direction = MKDirections.init(request: request)
+        direction.calculate { response, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let response = response else {
+                self.showAlert("Ошибка", with: "Маршрут не доступен")
+                return
+            }
+            
+            response.routes.forEach { route in
+                self.mapView.addOverlay(route.polyline)
+                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                
+                let distance = String(format: "%.1f", route.distance / 1000)
+                let timeInterval = route.expectedTravelTime
+                
+                print("Расстояние до места: \(distance) км.")
+                print("Время в пути: \(timeInterval) сек.")
+            }
+            
+        }
+    }
+    
+    private func createDirectionRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
+        guard let destinationCoordinate = placeCoordinate else { return nil }
+        let destination = MKPlacemark(coordinate: destinationCoordinate)
+        let source = MKPlacemark(coordinate: coordinate)
+        
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: source)
+        request.destination = MKMapItem(placemark: destination)
+        request.transportType = .automobile
+        request.requestsAlternateRoutes = true
+        
+        return request
+    }
+    
     @IBAction func cancelTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -129,6 +187,10 @@ class MapViewController: UIViewController {
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         mapViewControllerDelegate?.getAddress(addressLabel.text)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func goButtonTapped(_ sender: UIButton) {
+        getDirections()
     }
     
 }
@@ -182,6 +244,13 @@ extension MapViewController: MKMapViewDelegate {
                 }
             }
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = .systemBlue
+        renderer.lineWidth = 2.0
+        return renderer
     }
     
 }
