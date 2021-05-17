@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        places = realm.objects(Place.self)
+        places = StorageManager.getObjects(Place.self)
         sorting(reloadTableView: false)
         
         // Setup the search controller

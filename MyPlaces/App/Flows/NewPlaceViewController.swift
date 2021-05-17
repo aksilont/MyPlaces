@@ -99,7 +99,7 @@ class NewPlaceViewController: UITableViewController {
         
         if currentPlace != nil {
             do {
-                try realm.write {
+                try StorageManager.realm.write {
                     currentPlace?.name = newPlace.name
                     currentPlace?.location = newPlace.location
                     currentPlace?.type = newPlace.type

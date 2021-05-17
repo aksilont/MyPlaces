@@ -11,6 +11,7 @@
 		7A37AEFE26444C5E003EE066 /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37AEFD26444C5E003EE066 /* PlaceModel.swift */; };
 		7A37AF002644657A003EE066 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A37AEFF2644657A003EE066 /* NewPlaceViewController.swift */; };
 		7A37AF032645F10C003EE066 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7A37AF022645F10C003EE066 /* RealmSwift */; };
+		7A62C11C2651A8A100A7FB6E /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A62C11B2651A8A100A7FB6E /* MapManager.swift */; };
 		7ABABC6C264DA98600E32563 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABABC6B264DA98600E32563 /* MapViewController.swift */; };
 		7ABAF5802646847900F28EC0 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABAF57F2646847900F28EC0 /* StorageManager.swift */; };
 		7ABAF5822649317200F28EC0 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABAF5812649317200F28EC0 /* RatingControl.swift */; };
@@ -27,6 +28,7 @@
 		7A37AEFB26441FBD003EE066 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		7A37AEFD26444C5E003EE066 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 		7A37AEFF2644657A003EE066 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
+		7A62C11B2651A8A100A7FB6E /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		7ABABC6B264DA98600E32563 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7ABAF57F2646847900F28EC0 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		7ABAF5812649317200F28EC0 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
@@ -53,6 +55,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A10A720265279900032AB18 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				7A10A722265279C00032AB18 /* Custom Views */,
+				7ABABC6B264DA98600E32563 /* MapViewController.swift */,
+				7ADA33FC2642E3EE000EC8CF /* MainViewController.swift */,
+				7A37AEFF2644657A003EE066 /* NewPlaceViewController.swift */,
+				7A37AEFB26441FBD003EE066 /* CustomTableViewCell.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		7A10A721265279B30032AB18 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				7A37AEFD26444C5E003EE066 /* PlaceModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		7A10A722265279C00032AB18 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				7ABAF5812649317200F28EC0 /* RatingControl.swift */,
+				7AF31679264B03C100AAD571 /* RatingView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		7A10A723265279D80032AB18 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7ADA33F82642E3EE000EC8CF /* AppDelegate.swift */,
+				7ADA33FA2642E3EE000EC8CF /* SceneDelegate.swift */,
+				7A10A721265279B30032AB18 /* Entities */,
+				7A10A720265279900032AB18 /* Flows */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7A10A724265279ED0032AB18 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7ADA34012642E3EF000EC8CF /* Assets.xcassets */,
+				7ADA33FE2642E3EE000EC8CF /* Main.storyboard */,
+				7ADA34032642E3EF000EC8CF /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7A10A72526527A1F0032AB18 /* Environments */ = {
+			isa = PBXGroup;
+			children = (
+				7ADA34062642E3EF000EC8CF /* Info.plist */,
+			);
+			path = Environments;
+			sourceTree = "<group>";
+		};
+		7A10A72626527AE00032AB18 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7A10A72726527AEB0032AB18 /* Services */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7A10A72726527AEB0032AB18 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7ABAF57F2646847900F28EC0 /* StorageManager.swift */,
+				7A62C11B2651A8A100A7FB6E /* MapManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		7ADA33EC2642E3EE000EC8CF = {
 			isa = PBXGroup;
 			children = (
@@ -72,20 +149,10 @@
 		7ADA33F72642E3EE000EC8CF /* MyPlaces */ = {
 			isa = PBXGroup;
 			children = (
-				7ABABC6B264DA98600E32563 /* MapViewController.swift */,
-				7ABAF57F2646847900F28EC0 /* StorageManager.swift */,
-				7ADA33F82642E3EE000EC8CF /* AppDelegate.swift */,
-				7ADA33FA2642E3EE000EC8CF /* SceneDelegate.swift */,
-				7ADA33FC2642E3EE000EC8CF /* MainViewController.swift */,
-				7A37AEFF2644657A003EE066 /* NewPlaceViewController.swift */,
-				7A37AEFD26444C5E003EE066 /* PlaceModel.swift */,
-				7A37AEFB26441FBD003EE066 /* CustomTableViewCell.swift */,
-				7AF31679264B03C100AAD571 /* RatingView.swift */,
-				7ABAF5812649317200F28EC0 /* RatingControl.swift */,
-				7ADA33FE2642E3EE000EC8CF /* Main.storyboard */,
-				7ADA34012642E3EF000EC8CF /* Assets.xcassets */,
-				7ADA34032642E3EF000EC8CF /* LaunchScreen.storyboard */,
-				7ADA34062642E3EF000EC8CF /* Info.plist */,
+				7A10A723265279D80032AB18 /* App */,
+				7A10A72626527AE00032AB18 /* Core */,
+				7A10A724265279ED0032AB18 /* Resources */,
+				7A10A72526527A1F0032AB18 /* Environments */,
 			);
 			path = MyPlaces;
 			sourceTree = "<group>";
@@ -193,6 +260,7 @@
 				7ADA33F92642E3EE000EC8CF /* AppDelegate.swift in Sources */,
 				7ABABC6C264DA98600E32563 /* MapViewController.swift in Sources */,
 				7AF3167A264B03C100AAD571 /* RatingView.swift in Sources */,
+				7A62C11C2651A8A100A7FB6E /* MapManager.swift in Sources */,
 				7ABAF5802646847900F28EC0 /* StorageManager.swift in Sources */,
 				7A37AEFE26444C5E003EE066 /* PlaceModel.swift in Sources */,
 				7A37AEFC26441FBD003EE066 /* CustomTableViewCell.swift in Sources */,
@@ -346,7 +414,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LA6FA5G5XC;
-				INFOPLIST_FILE = MyPlaces/Info.plist;
+				INFOPLIST_FILE = MyPlaces/Environments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,7 +433,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LA6FA5G5XC;
-				INFOPLIST_FILE = MyPlaces/Info.plist;
+				INFOPLIST_FILE = MyPlaces/Environments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

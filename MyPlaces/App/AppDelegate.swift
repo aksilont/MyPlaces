@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let config = Realm.Configuration(
             schemaVersion: schemaVersion,
-            migrationBlock: { migration, oldSchemaVersion in
+            migrationBlock: { _, oldSchemaVersion in
                 if oldSchemaVersion < schemaVersion { }
             })
         // Tell Realm to use this new configuration object for the default Realm
