@@ -13,7 +13,7 @@ protocol MapViewControllerDelegate: AnyObject {
     func getAddress(_ address: String?)
 }
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, ShowAlertDelegate {
     
     let mapManager = MapManager()
     weak var mapViewControllerDelegate: MapViewControllerDelegate?
@@ -58,6 +58,7 @@ class MapViewController: UIViewController {
     
     private func setupMapView() {
         mapManager.locationManagerDelegate = self
+        mapManager.showAlertDelegate = self
         mapManager.checkLocationServices()
         
         if incomeSegueIdentifier == "ShowPlace" {
@@ -69,7 +70,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func showAlert(_ title: String, with message: String) {
+    func showAlert(_ title: String, with message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let actionOk = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(actionOk)
@@ -175,11 +176,13 @@ extension MapViewController: CLLocationManagerDelegate {
             mapView.showsUserLocation = true
             if incomeSegueIdentifier == "GetAddress" { mapManager.showUserLocation(mapView: self.mapView) }
         case .denied:
-            showAlert("Службы геолокации", with: "Нет доступа к местоположению")
+            showAlert("Службы геолокации",
+                      with: "Нет доступа к местоположению")
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
         case .restricted:
-            showAlert("Службы геолокации", with: "Приложение не авторизовано для использования служб геолокации")
+            showAlert("Службы геолокации",
+                      with: "Приложение не авторизовано для использования служб геолокации")
         case .authorizedAlways:
             break
         @unknown default:

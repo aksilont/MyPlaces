@@ -8,6 +8,10 @@
 import UIKit
 import MapKit
 
+protocol ShowAlertDelegate: AnyObject {
+    func showAlert(_ title: String, with message: String)
+}
+
 class MapManager {
     
     let locationManager: CLLocationManager = {
@@ -21,6 +25,8 @@ class MapManager {
             locationManager.delegate = locationManagerDelegate
         }
     }
+    
+    weak var showAlertDelegate: ShowAlertDelegate?
     
     private let regionInMeters = 1000.0
     private var placeCoordinate: CLLocationCoordinate2D?
@@ -55,11 +61,12 @@ class MapManager {
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() == false {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.showAlert("Службы геолокации",
-                               with: """
-                                     Службы геолокации выключены на устройстве.
-                                     Для включения: Настройки → Конфиденциальность → Службы геолокации → Включить
-                                     """)
+                self.showAlertDelegate?.showAlert(
+                    "Службы геолокации",
+                    with: """
+                        Службы геолокации выключены на устройстве.
+                        Для включения: Настройки → Конфиденциальность → Службы геолокации → Включить
+                        """)
             }
         }
     }
@@ -75,7 +82,7 @@ class MapManager {
     
     func getDirections(for mapView: MKMapView, previousLocation: (CLLocation) -> Void) {
         guard let location = locationManager.location?.coordinate else {
-            showAlert("Ошибка", with: "Не удалось определить текущее местопложение")
+            showAlertDelegate?.showAlert("Ошибка", with: "Не удалось определить текущее местопложение")
             return
         }
         
@@ -83,7 +90,7 @@ class MapManager {
         previousLocation(CLLocation(latitude: location.latitude, longitude: location.longitude))
         
         guard let request = createDirectionsRequest(from: location) else {
-            showAlert("Ошибка", with: "Не удалось получить координаты места назначения")
+            showAlertDelegate?.showAlert("Ошибка", with: "Не удалось получить координаты места назначения")
             return
         }
         
@@ -97,7 +104,7 @@ class MapManager {
             }
             
             guard let response = response else {
-                self.showAlert("Ошибка", with: "Маршрут не доступен")
+                self.showAlertDelegate?.showAlert("Ошибка", with: "Маршрут не доступен")
                 return
             }
             
@@ -147,10 +154,6 @@ class MapManager {
         let latitude = mapView.centerCoordinate.latitude
         let longitude = mapView.centerCoordinate.longitude
         return CLLocation(latitude: latitude, longitude: longitude)
-    }
-    
-    private func showAlert(_ title: String, with: String) {
-        
     }
     
 }
